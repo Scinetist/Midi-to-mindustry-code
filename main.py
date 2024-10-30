@@ -60,6 +60,9 @@ def write(midi, channel=0):
 	return 'Wroten ' + str(strs) + ' strings sucsessfully!'
 
 if __name__ == '__main__':
+	Path('result').mkdir(parents=True, exist_ok=True)
+	Path('.cache').mkdir(parents=True, exist_ok=True)
+	Path('midi').mkdir(parents=True, exist_ok=True)
 	while(True):
 		ac = input('Type action (1 for decode, 2 for write): ')
 		if ac == '1':
