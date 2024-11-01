@@ -49,13 +49,21 @@ def write(midi, channel=0):
 			out.write('control config block1 ' + str(k) + ' 0 0 0\n')
 			strs += 1
 			if strs%999 == 0:
-				out.write('write ' + str(strs//999) + ' cell1 0\n\n')
+				out.write('write ' + str(strs//999+1) + ' cell1 0')
+				out.close()
+				cpu+=1
+				file_name_out = 'result/' + midi + '/channel' + str(channel) + '_cpu' + str(cpu)
+				out = open(file_name_out, 'w')
 		if i['time'] != 0:
 			out.write('wait ' + str(i['time']) + '\n')
 			strs += 1
 			if strs%999 == 0:
-				out.write('write ' + str(strs//999) + ' cell1 0\n\n')
-	out.write('write 0 cell1 0\n\n')
+				out.write('write ' + str(strs//999+1) + ' cell1 0')
+				out.close()
+				cpu+=1
+				file_name_out = 'result/' + midi + '/channel' + str(channel) + '_cpu' + str(cpu)
+				out = open(file_name_out, 'w')
+	out.write('write 1 cell1 0')
 	out.close()
 	return 'Wroten ' + str(strs) + ' strings sucsessfully!'
 
